@@ -7,3 +7,8 @@
     border: none;
     outline: none;
 }
+
+.Button:hover{
+    background: transparent;
+    outline: var(--tg-theme-button-color);
+}
