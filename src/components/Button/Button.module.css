@@ -9,6 +9,7 @@
 }
 
 .Button:hover{
+    transition: 0.2s ease-in-out;
     background: transparent;
-    outline: var(--tg-theme-button-color);
+    outline: 1px solid var(--tg-theme-button-color);
 }
