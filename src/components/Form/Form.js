@@ -13,7 +13,7 @@ const Form = () => {
         tg.MainButton.setParams({
             text: 'Send'
         })
-    }, [tg.MainButton])
+    }, [tg])
 
     useEffect(() => {
         if(!country || !address){
@@ -21,7 +21,7 @@ const Form = () => {
         } else {
             tg.MainButton.show();
         }
-    }, [country, address])
+    }, [country, address, tg.MainButton])
 
     return (
         <from className={styles.Form}>
