@@ -10,7 +10,7 @@ function App() {
 
     useEffect(() => {
         tg.ready();
-    }, [])
+    }, [tg])
 
 
     return (
