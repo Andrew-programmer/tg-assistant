@@ -7,7 +7,7 @@ import {Routes, Route} from "react-router-dom";
 import routes from './routes';
 
 function App() {
-    const {tg, toggleMainButton} = useTelegram();
+    const {tg} = useTelegram();
 
     useEffect(() => {
         tg.ready();
