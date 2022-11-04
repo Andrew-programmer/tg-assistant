@@ -9,6 +9,12 @@ const Form = () => {
 
     const {tg} = useTelegram();
 
+    useEffect(() => {
+        tg.MainButton.setParams({
+            text: 'Send'
+        })
+    }, [tg])
+
     const sendData = useCallback(() => {
         const data = {
             country,
@@ -16,22 +22,19 @@ const Form = () => {
             subject
         }
 
+        console.log(data);
+
         tg.sendData(JSON.stringify(data));
     }, [country, address, subject, tg])
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', sendData);
 
+        tg.onEvent('mainButtonClicked', sendData);
         return () => {
             tg.offEvent('mainButtonClicked', sendData);
         }
-    })
 
-    useEffect(() => {
-        tg.MainButton.setParams({
-            text: 'Send'
-        })
-    }, [tg])
+    })
 
     useEffect(() => {
         if(!country || !address){
