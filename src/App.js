@@ -16,9 +16,7 @@ function App() {
 
     return (
         <div className="App">
-            {
-                user?.username ? <Header/> : null
-            }
+            <Header/>
             <Routes>
                 {routes.map(route => {
                     const {path, Component} = route;

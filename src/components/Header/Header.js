@@ -8,7 +8,10 @@ const Header = () => {
 
     return (
         <div className={styles.Header}>
-            <span className={styles.Username}>Hello, {user?.username}</span>
+            {
+                user?.username === undefined ? null :
+                    <span className={styles.Username}>Hello, {user?.username}</span>
+            }
         </div>
     );
 };
