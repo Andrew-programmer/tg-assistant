@@ -7,7 +7,7 @@ import {Routes, Route} from "react-router-dom";
 import routes from './routes';
 
 function App() {
-    const {tg} = useTelegram();
+    const {tg, user} = useTelegram();
 
     useEffect(() => {
         tg.ready();
@@ -16,7 +16,9 @@ function App() {
 
     return (
         <div className="App">
-            <Header/>
+            {
+                user?.username ? <Header/> : null
+            }
             <Routes>
                 {routes.map(route => {
                     const {path, Component} = route;
