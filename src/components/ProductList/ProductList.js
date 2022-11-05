@@ -60,7 +60,7 @@ const ProductList = () => {
             body: JSON.stringify(data)
         })
 
-    }, [addedItems])
+    }, [addedItems, queryId])
 
     useEffect(() => {
 
