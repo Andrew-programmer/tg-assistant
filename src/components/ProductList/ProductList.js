@@ -35,7 +35,6 @@ const ProductList = () => {
             })
         }
     }
-
     const add = (product) => {
         const newItems = addedItems.find(item => item.id === product.id) ?
             addedItems.filter(item => item.id !== product.id) :
