@@ -52,7 +52,7 @@ const ProductList = () => {
             queryId
         }
 
-        fetch('http://localhost:8080/web-data', {
+        fetch('https://tg-assistant-server.herokuapp.com/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
