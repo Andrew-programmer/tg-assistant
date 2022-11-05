@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import styles from './ProductList.module.css';
 import ProductItem from "./components/ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
@@ -23,7 +23,7 @@ const getTotalPrice = (items) => {
 
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
-    const {tg} = useTelegram();
+    const {tg, queryId} = useTelegram();
 
     const setBuyButton = (items) => {
         if(items.length === 0){
@@ -31,7 +31,7 @@ const ProductList = () => {
         } else {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `Buy: ${getTotalPrice(items)}`
+                text: `Buy: ${getTotalPrice(items)}$`
             })
         }
     }
@@ -44,6 +44,32 @@ const ProductList = () => {
         setAddedItems(newItems)
         setBuyButton(newItems);
     }
+
+    const sendData = useCallback(() => {
+        const data = {
+            products: addedItems,
+            totalPrice: getTotalPrice(addedItems),
+            queryId
+        }
+
+        fetch('http://localhost:8080/web-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+    }, [addedItems])
+
+    useEffect(() => {
+
+        tg.onEvent('mainButtonClicked', sendData);
+        return () => {
+            tg.offEvent('mainButtonClicked', sendData);
+        }
+
+    })
 
     return (
         <div className={styles.List}>
